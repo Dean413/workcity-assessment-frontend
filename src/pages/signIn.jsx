@@ -70,13 +70,7 @@ const SignIn = () => {
 
           <div className="d-grid"> {/*submit button */}
             <button type="submit" className="btn btn-success" disabled={loading}>
-              {loading ? (
-                <>
-                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                  Signing in...
-                </>
-                ) : ('Sign In')
-              }
+              {loading ? (<><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Signing in...</>) : ('Sign In')}
             </button>
           </div>
         </form>
