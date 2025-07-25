@@ -111,31 +111,31 @@ const ClientProject = () => {
           <Modal.Title>{editId ? 'Edit' : 'Add'} Project</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-             {error && <div className="alert alert-danger">{error}</div>}
+          <Form onSubmit={handleSubmit}>
+            {error && <div className="alert alert-danger">{error}</div>}
             <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
-              <Form.Control value={form.title} required onChange={(e) => setForm({ ...form, title: e.target.value })} />
+              <Form.Control value={form.title} required type='text' placeholder='Title' onChange={(e) => setForm({ ...form, title: e.target.value })} />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
-              <Form.Control value={form.description} required onChange={(e) => setForm({ ...form, description: e.target.value })} />
+              <Form.Control value={form.description} required type='text' placeholder='Description' onChange={(e) => setForm({ ...form, description: e.target.value })} />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Status</Form.Label>
               <Form.Select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })}>
-                <option value="pending" selected>Pending</option>
-                <option value="in-progress" unselectable=''>In Progress</option>
-                <option value="completed" unselectable=''>Completed</option>
+                <option value="pending">Pending</option>
+                <option value="in-progress" disabled>In Progress</option>
+                <option value="completed" disabled>Completed</option>
               </Form.Select>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={() => setShow(false)}>Cancel</Button>
-          <Button variant="primary" onClick={handleSubmit} disabled={loading}>{loading ? (<><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Saving...</>) : ('Save')}</Button>
+          <Button variant="primary" onClick={handleSubmit} type='submit' disabled={loading}>{loading ? (<><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Saving...</>) : ('Save')}</Button>
         </Modal.Footer>
       </Modal>
     </div>
