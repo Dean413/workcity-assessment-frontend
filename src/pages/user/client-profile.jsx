@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import api from '../../services/api';
 import { Button, Form, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
@@ -14,22 +14,27 @@ const ClientProfile = () => {
   });
 
   const [loading, setLoading] = useState(false)
-
+  const errorShownRef = useRef(false);
   const [editing, setEditing] = useState(false);
 
   {/*get client profile */}
   useEffect(() => {
+    if (errorShownRef.current) return; // 👈 prevent second run in dev mode
+    errorShownRef.current = true;
+
     api.get('/clients/profile')
       .then(res => {
         setProfile(res.data);
         setForm(res.data);
       })
       .catch(err => {
+        
          Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: err.response?.data?.message || 'Failed to fetch profile'
           });
+          errorShownRef = true;
         setProfile(null);
       }).finally(() => {
         setInitialLoading(false)
@@ -86,9 +91,10 @@ const ClientProfile = () => {
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
-              size="lg"
+             
               required
               type='text'
+              placeholder='full name'
               value={form.name}
               onChange={e => setForm({ ...form, name: e.target.value })}/>
             </Form.Group>
@@ -98,7 +104,7 @@ const ClientProfile = () => {
               <Form.Control
               required
               type='email'
-              size="lg"
+              placeholder='same as registration email'
               value={form.email}
               onChange={e => setForm({ ...form, email: e.target.value })}/>
             </Form.Group>
@@ -106,7 +112,7 @@ const ClientProfile = () => {
             <Form.Group className="mb-3">
               <Form.Label>Company</Form.Label>
               <Form.Control
-              size="lg"
+              placeholder='company name'
               value={form.company}
               onChange={e => setForm({ ...form, company: e.target.value })}/>
             </Form.Group>
@@ -114,8 +120,10 @@ const ClientProfile = () => {
             <Form.Group className="mb-3">
               <Form.Label>Phone</Form.Label>
               <Form.Control
-              size="lg"
+             
               type='number'
+              placeholder='phone number'
+              required
               value={form.phone}
               onChange={e => setForm({ ...form, phone: e.target.value })}/>
             </Form.Group>
