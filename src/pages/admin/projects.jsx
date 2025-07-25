@@ -252,7 +252,7 @@ const Projects = () => {
           <Modal.Title>{editId ? 'Edit' : 'Add'} Project</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Assign to User</Form.Label>
               <Form.Select
@@ -284,7 +284,7 @@ const Projects = () => {
             <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
-                value={currentProject.title}
+                value={currentProject.title} placeholder='Title' required
                 onChange={(e) => setCurrentProject({ ...currentProject, title: e.target.value })}
               />
             </Form.Group>
@@ -292,7 +292,7 @@ const Projects = () => {
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
-                value={currentProject.description}
+                value={currentProject.description} placeholder='description' required
                 onChange={(e) => setCurrentProject({ ...currentProject, description: e.target.value })}
               />
             </Form.Group>
@@ -314,7 +314,7 @@ const Projects = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>Cancel</Button>
-          <Button variant="primary" onClick={handleSubmit} disabled={loading}>{loading ? (<><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Saving...</>) : ('Save')}
+          <Button variant="primary" onClick={handleSubmit} type='submit' disabled={loading}>{loading ? (<><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Saving...</>) : ('Save')}
           </Button>
         </Modal.Footer>
       </Modal>
