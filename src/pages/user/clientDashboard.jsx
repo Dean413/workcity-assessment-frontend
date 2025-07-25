@@ -31,9 +31,8 @@ function ClientDashboard() {
         <Col xs={12} md={3} >
           <Card bg="primary" text="white" className="mb-3 shadow" style={{height: "190px"}}>
             <Card.Body>
-                <Card.Title>Your Projects</Card.Title>
+                <Card.Title style={{textAlign: "center"}}>Your Projects</Card.Title>
                 {client ? ( <>
-              <Card.Title style={{textAlign: "center"}}>Your Projects</Card.Title>
               <Card.Text style={{ fontSize: '6rem', textAlign: "center" }}>{projectCount}</Card.Text>
                </>) : (<p>Loading.....</p>)}
             </Card.Body>
