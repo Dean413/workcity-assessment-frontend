@@ -93,7 +93,7 @@ const Clients = () => {
       await api.put(`/clients/${editId}`, currentClient);
        Swal.fire({
         icon: 'success',
-        title: 'Deleted!',
+        title: 'Updated!',
         text: 'Client updated successfully.',
         timer: 2000,
         showConfirmButton: false
@@ -117,7 +117,7 @@ const Clients = () => {
         await api.post('/clients', currentClient);
        Swal.fire({
         icon: 'success',
-        title: 'Deleted!',
+        title: 'Added!',
         text: 'Client added successfully.',
         timer: 2000,
         showConfirmButton: false
@@ -128,7 +128,7 @@ const Clients = () => {
         Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: err.response?.data?.message || 'Failed to add client'
+        text: 'only one client per user'
       }); 
       } finally {
         setLoading(false)
