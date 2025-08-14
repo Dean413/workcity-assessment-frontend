@@ -16,7 +16,7 @@ const NavbarComponent = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand>Workcity</Navbar.Brand>
+        <Navbar.Brand>projectLink</Navbar.Brand>
 
         {!user ? (
           <Nav className="ms-auto">

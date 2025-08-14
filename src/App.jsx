@@ -12,10 +12,11 @@ import NavbarComponent from './components/navbar';
 import AdminDashboard from './pages/admin/adminDashboard';
 import ClientProject from './pages/user/clientProject';
 import ClientDashboard from './pages/user/clientDashboard';
+import Footer from './components/footer';
 
 function App() {
   return (
-<>
+<div id='root'>
         <NavbarComponent />
         <Routes>
           <Route path="/" element={<Register />} />
@@ -57,7 +58,9 @@ function App() {
             <Clients />
           </ProtectedRoute>} />
         </Routes>
-   </>
+
+        <Footer />
+   </div>
   );
 }
 
